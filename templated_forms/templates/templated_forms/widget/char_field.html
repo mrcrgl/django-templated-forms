@@ -1,0 +1,11 @@
+<label for="id_{{ field.name }}" class="col-md-4 control-label">{{ field.label }}</label>
+<div class="col-md-6">
+    <input type="text" name="{{ field.html_name }}" class="form-control" id="id_{{ field.name }}"
+           placeholder="{% if field.initial %}{{ field.initial }}{% endif %}"
+           value="{% if field.value %}{{ field.value }}{% endif %}">
+
+    {% if field.help_text %}<span class="help-block">{{ field.help_text }}</span>{% endif %}
+    {% for message in field.errors %}
+        <p class="help-block">{{ message }}</p>
+    {% endfor %}
+</div>

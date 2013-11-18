@@ -1,0 +1,16 @@
+<label for="id_{{ field.name }}" class="col-md-4 control-label">{{ field.label }}</label>
+<div class="col-md-6">
+    <select name="{{ field.html_name }}" class="form-control">
+        {% if field.field.empty_label != None %}
+            <option value="">{% if field.field.empty_label %}{{ field.field.empty_label }}{% else %}---------{% endif %}</option>
+        {% endif %}
+        {% for object in field.field.queryset %}
+            <option value="{{ object.pk }}" {% if field.value == object.pk %}selected{% endif %}>{{ object }}</option>
+        {% endfor %}
+    </select>
+
+    {% if field.help_text %}<span class="help-block">{{ field.help_text }}</span>{% endif %}
+    {% for message in field.errors %}
+        <p class="help-block">{{ message }}</p>
+    {% endfor %}
+</div>

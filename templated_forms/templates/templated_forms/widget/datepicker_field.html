@@ -1,0 +1,15 @@
+<label for="id_{{ field.name }}" class="col-md-4 control-label">{{ field.label }}</label>
+<div class="col-md-6">
+    <div class="input-group {% if mode == "date" %}enable-date-picker{% endif %}{% if mode == "datetime" %}enable-datetime-picker{% endif %}">
+        <input type="text" class="form-control" name="{{ field.html_name }}" class="form-control" id="id_{{ field.name }}"
+           placeholder="{% if field.initial %}{{ field.initial }}{% else %}Format: tt.mm.jjjj [hh:mm:ss]{% endif %}"
+           {% if mode == "date" %}data-format="dd.MM.yyyy"{% endif %}
+           {% if mode == "datetime" %}data-format="dd.MM.yyyy hh:mm:ss"{% endif %}
+           value="{{ field.value|date:"SHORT_DATETIME_FORMAT" }}">
+        <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+    </div>
+    {% if field.help_text %}<span class="help-block">{{ field.help_text }}</span>{% endif %}
+    {% for message in field.errors %}
+        <p class="help-block">{{ message }}</p>
+    {% endfor %}
+</div>
