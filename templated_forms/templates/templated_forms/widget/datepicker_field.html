@@ -1,3 +1,7 @@
+{% extends "templated_forms/enclosure/default.html" %}
+
+{% block form_widget_content %}
+
 <label for="id_{{ field.name }}" class="col-md-4 control-label">{{ field.label }}</label>
 <div class="col-md-6">
     <div class="input-group {% if mode == "date" %}enable-date-picker{% endif %}{% if mode == "datetime" %}enable-datetime-picker{% endif %}">
@@ -13,3 +17,5 @@
         <p class="help-block">{{ message }}</p>
     {% endfor %}
 </div>
+
+{% endblock %}

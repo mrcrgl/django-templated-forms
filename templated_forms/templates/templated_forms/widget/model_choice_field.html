@@ -1,11 +1,15 @@
+{% extends "templated_forms/enclosure/default.html" %}
+
+{% block form_widget_content %}
+
 <label for="id_{{ field.name }}" class="col-md-4 control-label">{{ field.label }}</label>
 <div class="col-md-6">
-    <select name="{{ field.html_name }}" class="form-control">
+    <select name="{{ field.html_name }}" class="form-control" id="id_{{ field.name }}">
         {% if field.field.empty_label != None %}
             <option value="">{% if field.field.empty_label %}{{ field.field.empty_label }}{% else %}---------{% endif %}</option>
         {% endif %}
         {% for object in field.field.queryset %}
-            <option value="{{ object.pk }}" {% if field.value == object.pk %}selected{% endif %}>{{ object }}</option>
+            <option value="{{ object.pk }}" {% if field.value|add:0 == object.pk %}selected{% endif %}>{{ object }}</option>
         {% endfor %}
     </select>
 
@@ -14,3 +18,5 @@
         <p class="help-block">{{ message }}</p>
     {% endfor %}
 </div>
+
+{% endblock %}
